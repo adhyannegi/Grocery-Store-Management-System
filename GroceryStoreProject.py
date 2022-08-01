@@ -1,11 +1,14 @@
+#importing libraries
 import pickle
 import os
 
+#Creating and opening new datafile
 f = open('grocerystore.dat', 'wb')
 rec = ['Name', 'Price', 'Quantity']
 pickle.dump(rec,f)
 f.close()
 
+#Function to add a new record into the datafile
 def add_item():
   with open("grocerystore.dat","ab") as f:
     ans='y'
@@ -18,7 +21,7 @@ def add_item():
       print('Item added.')
       ans=input("Enter more data Y/N:")
 
-
+#Function to delete a record from the datafile
 def delete_rec(name_of_item):
   ifile=open("grocerystore.dat","rb") 
   ofile=open("TEMP.dat","ab")     
@@ -37,7 +40,7 @@ def delete_rec(name_of_item):
   os.remove("grocerystore.dat")
   os.rename("TEMP.dat","grocerystore.dat")
 
-
+#Function to update the price of an item in the datafile
 def update_price(name_of_item, new_price):
   found=False
   with open("grocerystore.dat","rb+") as f:        
@@ -56,7 +59,7 @@ def update_price(name_of_item, new_price):
           print("No Record Found")
         break
     
-
+#Function to update the quantity of an item in the datafile
 def update_quantity(name_of_item, new_quantity):
   found=False
   with open("grocerystore.dat","rb+") as f:        
@@ -76,7 +79,7 @@ def update_quantity(name_of_item, new_quantity):
         break
     
 
-
+#Function to display the data
 def display():
   with open("grocerystore.dat","rb") as f:
     while True:
@@ -86,7 +89,7 @@ def display():
       except:     
         break
 
-
+#Code for user interaction
 print('Welcome to the Grocery Store.')
 opt = 'y'
 while opt in 'Yy':                                                             
